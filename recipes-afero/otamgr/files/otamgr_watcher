@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ `/bin/pidof otamgr` ]; then
+    /usr/bin/killall otamgr
+fi
+
+while true
+do
+    PID=`/bin/pidof otamgr`
+    if [ -z $PID ]; then
+         /usr/bin/otamgr
+    fi
+    sleep 5s
+done

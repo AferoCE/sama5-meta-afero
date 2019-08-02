@@ -1,0 +1,38 @@
+diff --git a/arch/arm/boot/dts/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
+index 8eeac13..83369db 100644
+--- a/arch/arm/boot/dts/at91-sama5d2_xplained.dts
++++ b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
+@@ -348,7 +348,7 @@
+ 
+ 			flx0: flexcom@f8034000 {
+ 				atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
+-				status = "disabled"; /* conflict with ISC_D2 & ISC_D3 data pins */
++				status = "okay"; /* conflict with ISC_D2 & ISC_D3 data pins */
+ 
+ 				uart5: serial@200 {
+ 					compatible = "atmel,at91sam9260-usart";
+@@ -504,7 +504,10 @@
+ 
+ 				pinctrl_flx0_default: flx0_default {
+ 					pinmux = <PIN_PB28__FLEXCOM0_IO0>,
+-						 <PIN_PB29__FLEXCOM0_IO1>;
++						 <PIN_PB29__FLEXCOM0_IO1>,
++						 <PIN_PB30__FLEXCOM0_IO2>,
++						 <PIN_PB31__FLEXCOM0_IO3>,
++                                                 <PIN_PC0__FLEXCOM0_IO4>;
+ 					bias-disable;
+ 				};
+ 
+diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
+index 566ecb4..0cad653 100644
+--- a/arch/arm/boot/dts/sama5d2.dtsi
++++ b/arch/arm/boot/dts/sama5d2.dtsi
+@@ -1249,7 +1249,7 @@
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
+ 				ranges = <0x0 0xf8034000 0x800>;
+-				status = "disabled";
++				status = "okay";
+ 			};
+ 
+ 			flx1: flexcom@f8038000 {

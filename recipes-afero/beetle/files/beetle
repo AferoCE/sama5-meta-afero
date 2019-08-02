@@ -1,0 +1,34 @@
+#!/bin/sh
+
+NAME=beetle_watcher
+APP_NAME=/usr/bin/beetle
+PID=`/bin/pidof -x $NAME`
+
+case $1 in
+    start)
+        if [ ! -n "`/bin/pidof hciattach`" ] ; then
+            /usr/bin/hciattach /dev/ttyS2 bcm43xx 921600 flow
+        fi
+        /usr/bin/hciconfig hci0 up
+        if [ ! -n "$PID" ] ; then
+            /usr/bin/$NAME &
+        else
+            /bin/echo "$NAME is already running and has a pid of $PID"
+        fi
+    ;;
+    stop)
+        [ -n "$PID" ] && /bin/kill $PID
+        /usr/bin/hciconfig hci0 down
+
+        APP_PIDS=`/bin/pidof -x $APP_NAME`
+        [ -n "$APP_PIDS" ] && /bin/kill $APP_PIDS
+    ;;
+    restart)
+        [ -n "$PID" ] && $0 stop
+        $0 start
+    ;;
+    *)
+    /bin/echo "Usage: $0 start|stop|restart"
+    ;;
+esac
+

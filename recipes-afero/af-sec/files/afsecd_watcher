@@ -1,0 +1,15 @@
+#!/bin/sh
+APP_NAME=afsecd
+
+if [ ! -z `/bin/pidof $APP_NAME ` ]; then
+    /usr/bin/killall $APP_NAME
+fi
+
+while true
+do
+    PID=`/bin/pidof $APP_NAME`
+    if [ -z $PID ]; then
+        /usr/bin/$APP_NAME
+    fi
+    sleep 5s
+done

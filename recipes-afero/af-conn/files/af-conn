@@ -1,0 +1,25 @@
+#!/bin/sh
+NAME=af_conn_watcher
+PID=`/bin/pidof -x $NAME`
+
+case $1 in
+    start)
+        if [ ! -n "$PID" ] ; then
+            /usr/lib/af-conn/$NAME &
+        else
+            /bin/echo "$NAME is already running and has a pid of $PID"
+        fi
+    ;;
+    stop)
+        [ -n "$PID" ] && /bin/kill $PID
+        /usr/bin/killall wifistad connmgr
+    ;;
+    restart)
+        [ -n "$PID" ] && $0 stop
+        $0 start
+    ;;
+    *)
+    /bin/echo "Usage: $0 start|stop|restart"
+    ;;
+esac
+

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ `/bin/pidof hubby` ]; then
+    /usr/bin/killall hubby
+fi
+
+while true
+do
+    PID=`/bin/pidof hubby`
+    if [ -z $PID ]; then
+         /usr/bin/hubby
+    fi
+    sleep 5s
+done

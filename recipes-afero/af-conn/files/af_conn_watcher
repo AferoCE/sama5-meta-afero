@@ -1,0 +1,44 @@
+#!/bin/sh
+
+. /usr/lib/af-conn/get_netif_names
+
+# disable fw with -d
+run_connmgr() {
+    /usr/bin/connmgr -d
+}
+
+run_wand() {
+    if [ ! -f /afero_nv/.wan_type ] ; then
+        wancontrol on
+        wancontrol off
+    fi
+    /usr/bin/wand
+}
+
+run_wifistad() {
+    /bin/rm -f /tmp/wpa_ctrl*
+    /usr/bin/wifistad
+}
+
+if [ "x$1" != "x" ] ; then
+    while true ; do
+        $1
+        sleep 5
+    done
+fi
+
+# Determine if the hardware supports WAN or not
+/usr/lib/af-conn/net_capabilities
+WAN_SUPPORTED=$(($? & 0x2))
+
+# Start the WPA supplicant
+$0 run_wifistad &
+if [ $WAN_SUPPORTED -ne 0 ] ; then
+    $0 run_wand &
+fi
+
+while true
+do
+    run_connmgr
+    /bin/sleep 5
+done
