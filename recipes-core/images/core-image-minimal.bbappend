@@ -31,3 +31,22 @@ afero_rpi3_set_build_version() {
     echo "    \"versionNumber\" : \"${HUB_VERSION}\"" >> ${DEST_FILE}
     echo '}' >> ${DEST_FILE}
 }
+
+
+afero_modify_crontab() {
+    CRONTAB_ROOT_FILE="${IMAGE_ROOTFS}${sysconfdir}/crontab"
+    CHECK_AF_SERVICE_FILE="${IMAGE_ROOTFS}${bindir}/check-af-services.sh"
+    #
+    # Added the check-af-service.sh line
+    #
+    if [ -e $CRONTAB_ROOT_FILE ] ; then
+        echo " *** Find the crontab file"
+        if [ -e $CHECK_AF_SERVICE_FILE ] ; then
+            echo " *** Find the check-af-services.sh file "
+
+            echo -n >> ${CRONTAB_ROOT_FILE}
+            echo "  *   *     * * *     root   /usr/bin/check-af-services.sh" >> ${CRONTAB_ROOT_FILE}
+            echo " */15  *    * * *     root   /usr/bin/logpush" >> ${CRONTAB_ROOT_FILE}
+        fi
+    fi
+}

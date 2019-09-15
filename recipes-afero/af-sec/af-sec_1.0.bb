@@ -15,7 +15,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 #PARALLEL_MAKE = ""
 
 SRC_URI = "git://git@github.com/AferoCE/sama5-binaries-af-sec;protocol=ssh"
-SRCREV = "beecc0f2092818f00ef45671bb0a47e7ee960280"
+SRCREV = "befbf0095102c75fe8fe0756af00c89f3267c146"
 SRC_URI += " file://afsecd"
 SRC_URI += " file://afsecd_watcher"
 

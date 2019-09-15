@@ -32,6 +32,13 @@ do_install_append() {
     install -d ${D}${libdir}
     install -d ${D}${libdir}/af-conn/
 
+    # migrated from rpi af-system: afero_nv is a partition to store Afero daemons' data
+    # Note: partner needs to create afero_nv as a persistent partition so a system
+    #       upgrade doesn't wipe out the data.
+    install -d ${D}/data
+    ln -s ../data ${D}/afero_nv
+
+
     install -Dm 755 ${WORKDIR}/af-conn ${D}${sysconfdir}/init.d/
     install -Dm 755 ${WORKDIR}/af_conn_watcher ${D}${libdir}/af-conn/
 
@@ -50,10 +57,11 @@ do_install_append() {
         cp -dp ${EXTERNALSRC}/../files/sama5${i} ${D}${i}
     done
 
-    # install the whitelist (for prod only)
-    cp ${D}${sysconfdir}/af-conn/whitelist.prod ${D}${sysconfdir}/af-conn/whitelist
-
-    # remove from the file after installation
+    if [ "x${BUILD_TYPE}x" = "xdevx" ] ; then
+        cp ${D}${sysconfdir}/af-conn/whitelist.dev ${D}${sysconfdir}/af-conn/whitelist
+    else
+        cp ${D}${sysconfdir}/af-conn/whitelist.prod ${D}${sysconfdir}/af-conn/whitelist
+    fi
     rm ${D}${sysconfdir}/af-conn/whitelist.dev
     rm ${D}${sysconfdir}/af-conn/whitelist.prod
 
@@ -65,4 +73,4 @@ do_install_append() {
 #    fi
 }
 
-FILES_${PN} += " ./usr/lib/af-conn/* ./etc/af-conn/*"
+FILES_${PN} += " ./usr/lib/af-conn/* ./etc/af-conn/* ./data ./afero_nv"

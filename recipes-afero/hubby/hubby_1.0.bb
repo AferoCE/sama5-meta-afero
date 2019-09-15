@@ -12,7 +12,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 #inherit externalsrc update-rc.d autotools
 #EXTERNALSRC = "${TOPDIR}/../../src_afero/hubby/pkg"
 SRC_URI = "git://git@github.com/AferoCE/sama5-binaries-hubby;protocol=ssh"
-SRCREV = "a2a7b1c3ae132f02b9d792bc38485aab006f3bc3"
+SRCREV = "982e1e76fd47dc11d28e315bc333a6fd0241338f"
 
 S = "${WORKDIR}/git"
 
