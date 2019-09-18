@@ -7,6 +7,7 @@ LICENSE = "CLOSED"
 LIC_FILES_CHKSUM = ""
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+inherit update-rc.d
 
 #Tina: using the binaries repo instead source
 #inherit externalsrc update-rc.d autotools
@@ -16,8 +17,8 @@ SRCREV = "982e1e76fd47dc11d28e315bc333a6fd0241338f"
 
 S = "${WORKDIR}/git"
 
-#EXTRA_OECONF = "BUILD_TYPE=${BUILD_TYPE} BUILD_NUMBER=${BUILD_NUMBER} HUBBY_BLUETOOTH=bluez"
-#PARALLEL_MAKE = ""
+EXTRA_OECONF = "BUILD_TYPE=${BUILD_TYPE} BUILD_NUMBER=${BUILD_NUMBER} HUBBY_BLUETOOTH=bluez"
+PARALLEL_MAKE = ""
 
 
 SRC_URI += " file://hubby"

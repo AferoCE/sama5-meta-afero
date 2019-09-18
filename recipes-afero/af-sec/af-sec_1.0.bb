@@ -8,11 +8,9 @@ LIC_FILES_CHKSUM = ""
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
-#TINA: using the binary repo instead of the source
-#inherit externalsrc autotools update-rc.d
-#EXTERNALSRC = "${TOPDIR}/../../src_afero/af-sec/pkg"
-#EXTRA_OECONF = "BUILD_TYPE=${BUILD_TYPE} BUILD_TARGET=${BUILD_TARGET}"
-#PARALLEL_MAKE = ""
+inherit update-rc.d
+EXTRA_OECONF = "BUILD_TYPE=${BUILD_TYPE} BUILD_TARGET=${BUILD_TARGET}"
+PARALLEL_MAKE = ""
 
 SRC_URI = "git://git@github.com/AferoCE/sama5-binaries-af-sec;protocol=ssh"
 SRCREV = "befbf0095102c75fe8fe0756af00c89f3267c146"
