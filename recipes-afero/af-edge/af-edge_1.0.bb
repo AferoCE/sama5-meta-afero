@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = ""
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
 SRC_URI = "git://git@github.com/AferoCE/sama5-binaries-af-edge;protocol=ssh"
-SRCREV = "b4b99161b4084cbe6196f4b4538a40eb087eb84f"
+SRCREV = "6be0770e6ac7ce69f4c99368bd47aefa3dfe71aa"
 
 S = "${WORKDIR}/git"
 

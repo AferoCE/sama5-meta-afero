@@ -57,11 +57,10 @@ do_install_append() {
         cp -dp ${EXTERNALSRC}/../files/sama5${i} ${D}${i}
     done
 
-    if [ "x${BUILD_TYPE}x" = "xdevx" ] ; then
-        cp ${D}${sysconfdir}/af-conn/whitelist.dev ${D}${sysconfdir}/af-conn/whitelist
-    else
-        cp ${D}${sysconfdir}/af-conn/whitelist.prod ${D}${sysconfdir}/af-conn/whitelist
-    fi
+    # install the whitelist (for prod only)
+    cp ${D}${sysconfdir}/af-conn/whitelist.prod ${D}${sysconfdir}/af-conn/whitelist
+
+    # remove from the file after installation
     rm ${D}${sysconfdir}/af-conn/whitelist.dev
     rm ${D}${sysconfdir}/af-conn/whitelist.prod
 

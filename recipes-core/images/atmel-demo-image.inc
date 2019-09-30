@@ -9,13 +9,9 @@ IMAGE_INSTALL = "\
     packagegroup-base-bluetooth \
     packagegroup-base-usbgadget \
     kernel-modules \
-    lrzsz \
     setserial \
     opkg \
     iperf3 \
-    \
-    nbench-byte \
-    lmbench \
     \
     linux-firmware-sd8686 \
     linux-firmware-sd8688 \
@@ -33,7 +29,6 @@ IMAGE_INSTALL = "\
     linux-firmware-rtl8192su \
     linux-firmware-rtl8723 \
     \
-    alsa-utils \
     i2c-tools \
     devmem2 \
     dosfstools \
@@ -45,16 +40,12 @@ IMAGE_INSTALL = "\
     iproute2 \
     iptables \
     bridge-utils \
-    can-utils \
-    evtest \
     python-pyserial \
     python-smbus \
     python-ctypes \
     python-pip \
     python-distribute \
-    gdbserver \
     usbutils \
-    wget \
     ${CORE_IMAGE_EXTRA_INSTALL} \
     "
 

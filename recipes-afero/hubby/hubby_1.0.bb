@@ -7,13 +7,12 @@ LICENSE = "CLOSED"
 LIC_FILES_CHKSUM = ""
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-inherit update-rc.d
 
 #Tina: using the binaries repo instead source
 #inherit externalsrc update-rc.d autotools
 #EXTERNALSRC = "${TOPDIR}/../../src_afero/hubby/pkg"
 SRC_URI = "git://git@github.com/AferoCE/sama5-binaries-hubby;protocol=ssh"
-SRCREV = "982e1e76fd47dc11d28e315bc333a6fd0241338f"
+SRCREV = "5c6acb6ee87ed2deb4ba1cf5edf8cb11196618ec"
 
 S = "${WORKDIR}/git"
 

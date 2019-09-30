@@ -5,11 +5,12 @@ PR = "r1"
 require atmel-demo-image.inc
 
 
-IMAGE_INSTALL += "beetle hubby af-sec af-ipc af-util af-edge attrd af-conn bluez5 bluez5-noinst-tools wpa-supplicant iptables iw linux-firmware-bcm43430 curl openssl ntp vim-common otamgr i2c-tools dropbear ntp"
+IMAGE_INSTALL += "beetle hubby af-sec af-ipc af-util af-edge attrd af-conn af-extras bluez5 bluez5-noinst-tools wpa-supplicant iptables iw linux-firmware-bcm43430 curl openssl ntp vim-common otamgr i2c-tools dropbear ntp"
 
 IMAGE_FEATURES += " package-management"
 
-#ROOTFS_POSTPROCESS_COMMAND += " afero_rpi3_generate_sysctl_config ; afero_rpi3_set_root_password ; afero_rpi3_set_build_version ;"
+
+ROOTFS_POSTPROCESS_COMMAND += " afero_modify_crontab ; "
 
 afero_rpi3_generate_sysctl_config() {
     # sysv sysctl config
