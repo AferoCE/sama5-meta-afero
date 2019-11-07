@@ -13,7 +13,7 @@ EXTRA_OECONF = "BUILD_TYPE=${BUILD_TYPE} BUILD_TARGET=${BUILD_TARGET}"
 PARALLEL_MAKE = ""
 
 SRC_URI = "git://git@github.com/AferoCE/sama5-binaries-af-sec;protocol=ssh"
-SRCREV = "c5517225a5d3ad513a6e5697d1df93ac724b1f0f"
+SRCREV = "8199d39c517285114fd5d26b67bf67aa337e269c"
 SRC_URI += " file://afsecd"
 SRC_URI += " file://afsecd_watcher"
 
