@@ -8,9 +8,7 @@ LIC_FILES_CHKSUM = ""
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
-#Tina: using the binaries repo instead source
-#inherit externalsrc update-rc.d autotools
-#EXTERNALSRC = "${TOPDIR}/../../src_afero/hubby/pkg"
+inherit update-rc.d
 SRC_URI = "git://git@github.com/AferoCE/sama5-binaries-hubby;protocol=ssh"
 SRCREV = "2d893ef27d689e903849106268759323931430a4"
 
